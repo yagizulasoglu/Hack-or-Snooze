@@ -75,16 +75,27 @@ class StoryList {
 
   async addStory(user, newStory) {
     // UNIMPLEMENTED: complete this function!
-    const title = $("#create-title").val();
-    const author = $("#create-author").val();
-    const url = $("create-url").val();
+    // const title = $("#create-title").val();
+    // const author = $("#create-author").val();
+    // const url = $("create-url").val();
 
-    const response = await fetch({
-      method:"POST",
+    const response = await fetch(`${BASE_URL}/stories`, {
+      method: "POST",
+      body: JSON.stringify({
+        token: user.loginToken,
+        story: newStory
+      })
+    });
 
-    })
-    console.log(response);
-    const addedStory = new Story(newStory);
+    const data = await response.json();
+
+    // {title, author, url, username, storyId, createdAt}
+    const storyData = data.story;
+    delete storyData.updatedAt;
+
+    const addedStory = new Story(storyData);
+    this.stories.unshift(addedStory);
+    return addedStory;
   }
 }
 
