@@ -73,8 +73,18 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory( /* user, newStory */) {
+  async addStory(user, newStory) {
     // UNIMPLEMENTED: complete this function!
+    const title = $("#create-title").val();
+    const author = $("#create-author").val();
+    const url = $("create-url").val();
+
+    const response = await fetch({
+      method:"POST",
+
+    })
+    console.log(response);
+    const addedStory = new Story(newStory);
   }
 }
 
