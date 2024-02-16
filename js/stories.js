@@ -38,12 +38,26 @@ function generateStoryMarkup(story) {
     `);
 }
 
-function toggleFavorite() {
-  console.log("clicked");
-  //$(".bi-star").toggleClass("bi-star-fill");
+function toggleFavorite(evt) {
+  // console.log("clicked");
+  const $selectStar = $(evt.target);
+  $selectStar.toggleClass("bi-star-fill");
+  $selectStar.toggleClass("bi-star");
+  const $storyID = $selectStar
+    .closest("li")
+    .attr("id");
+  for (let story of storyList){
+    let storyListIndex;
+    if (story.storyId === $storyID){
+      storyListIndex = storyList.indexOf(story);
+      break;
+    }
+  }
+  currentUser.addFavorite(storyList[storyListIndex]);
+
 }
 
-$(".bi").on("click", toggleFavorite);
+$("ol").on("click", "i", toggleFavorite);
 
 /** Gets list of stories from server, generates their HTML, and puts on page. */
 
