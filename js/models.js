@@ -221,14 +221,21 @@ class User {
 
   async addFavorite(story) {
     this.favorites.push(story);
-    const response = await fetch(`${BASE_URL}/user/${this.username}/favorites/{this.storyId}`, {
+    const response = await fetch(`${BASE_URL}/users/${this.username}/favorites/${story.storyId}`, {
       method: "POST",
       body: JSON.stringify({
-        token: user.loginToken,
-        //username: user.username,
+        token: this.loginToken
     })})
-    const storyData = await response.json();
+  }
 
+  async removeFavorite(story) {
+    const indexOfStory = this.favorites.indexOf(story);
+    this.favorites.splice(indexOfStory, 1);
+    const response = await fetch(`${BASE_URL}/users/${this.username}/favorites/${story.storyId}`, {
+      method: "POST",
+      body: JSON.stringify({
+        token: this.loginToken
+    })})
   }
 }
 
