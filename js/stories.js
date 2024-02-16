@@ -78,11 +78,20 @@ function putStoriesOnPage() {
   // loop through all of our stories and generate HTML for them
   for (let story of storyList.stories) {
     const $story = generateStoryMarkup(story);
+    console.log(story);
+    console.log(currentUser.favorites);
+    for (let favStory of currentUser.favorites) {
+      if (story.storyId === favStory.storyId) {
+        $("i").attr("class", "bi bi-star-fill");
+        break;
+      }
+    }
     $allStoriesList.append($story);
+    }
+    $allStoriesList.show();
   }
 
-  $allStoriesList.show();
-}
+
 
 /** Collects data to create a new story, appends it to the page, hides and resets submit form */
 
