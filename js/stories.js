@@ -37,24 +37,33 @@ function generateStoryMarkup(story) {
       </li>
     `);
 }
-
+// object: {stories: [{story instance}, {story instance}]}
 function toggleFavorite(evt) {
-  // console.log("clicked");
   const $selectStar = $(evt.target);
-  $selectStar.toggleClass("bi-star-fill");
-  $selectStar.toggleClass("bi-star");
   const $storyID = $selectStar
     .closest("li")
     .attr("id");
-  for (let story of storyList){
-    let storyListIndex;
+
+  let storyListIndex;
+  for (let story of storyList.stories){
     if (story.storyId === $storyID){
-      storyListIndex = storyList.indexOf(story);
+      storyListIndex = storyList.stories.indexOf(story);
       break;
     }
   }
-  currentUser.addFavorite(storyList[storyListIndex]);
 
+
+
+  if ($selectStar.attr("class") === "bi bi-star") {
+    currentUser.addFavorite(storyList.stories[storyListIndex]);
+    const $favoritedStory = generateStoryMarkup(storyList.stories[storyListIndex]);
+    $allStoriesList.append($($favoritedStory));
+  } else if ($selectStar.attr("class") === "bi bi-star-fill") {
+    currentUser.removeFavorite(storyList.stories[storyListIndex]);
+    $allStoriesList.remove($());
+  }
+  $selectStar.toggleClass("bi-star-fill");
+  $selectStar.toggleClass("bi-star");
 }
 
 $("ol").on("click", "i", toggleFavorite);

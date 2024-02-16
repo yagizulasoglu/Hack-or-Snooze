@@ -14,7 +14,7 @@ function navFavoritesList(evt) {
     const $story = generateStoryMarkup(story);
     $allStoriesList.append($story);
   }
-
+  $submitForm.hide();
   $allStoriesList.show();
 
 }
@@ -37,6 +37,7 @@ function navAllStories(evt) {
   evt.preventDefault();
   hidePageComponents();
   putStoriesOnPage();
+  $submitForm.hide();
 }
 
 $body.on("click", "#nav-all", navAllStories);
@@ -49,6 +50,7 @@ function navLoginClick(evt) {
   hidePageComponents();
   $loginForm.show();
   $signupForm.show();
+  $submitForm.hide();
 }
 
 $navLogin.on("click", navLoginClick);
