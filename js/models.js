@@ -218,4 +218,17 @@ class User {
       return null;
     }
   }
+
+  async addFavorite(story) {
+    this.favorites.push(story);
+    const response = await fetch(`${BASE_URL}/user/${this.username}/favorites/{this.storyId}`, {
+      method: "POST",
+      body: JSON.stringify({
+        token: user.loginToken,
+        //username: user.username,
+    })})
+    const storyData = await response.json();
+
+  }
 }
+
