@@ -4,6 +4,24 @@
  * Handling navbar clicks and updating navbar
  */
 
+function navFavoritesList(evt) {
+  console.debug("navFavoritesList", evt);
+  hidePageComponents();
+
+  $allStoriesList.empty();
+
+  for (let story of currentUser.favorites) {
+    const $story = generateStoryMarkup(story);
+    $allStoriesList.append($story);
+  }
+
+  $allStoriesList.show();
+
+}
+
+$("#nav-favorite-story").on("click", navFavoritesList);
+
+
 /** Show the hidden submit form to the user */
 function navNewStoryForm(evt) {
   console.debug("navNewStoryForm", evt);
