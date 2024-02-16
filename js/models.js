@@ -24,8 +24,9 @@ class Story {
   /** Parses hostname out of URL and returns it. */
 
   getHostName() {
-    // FIXME: complete this function!
-    return "hostname.com";
+    // Do we need to get rid of the https?
+    const url = new URL(this.url);
+    return url.hostname;
   }
 }
 
@@ -75,9 +76,6 @@ class StoryList {
 
   async addStory(user, newStory) {
     // UNIMPLEMENTED: complete this function!
-    // const title = $("#create-title").val();
-    // const author = $("#create-author").val();
-    // const url = $("create-url").val();
 
     const response = await fetch(`${BASE_URL}/stories`, {
       method: "POST",
@@ -91,10 +89,9 @@ class StoryList {
 
     // {title, author, url, username, storyId, createdAt}
     const storyData = data.story;
-    delete storyData.updatedAt;
 
     const addedStory = new Story(storyData);
-    //this.stories.unshift(addedNewStory);
+    this.stories.unshift(addedStory);
     return addedStory;
   }
 }

@@ -4,15 +4,14 @@
  * Handling navbar clicks and updating navbar
  */
 
-
-
-function displayNewStoryForm(evt) {
-  console.debug("displayNewStoryForm", evt);
-  const $submitForm = $("#submit-form");
-  $submitForm.removeClass("hidden");
+/** Show the hidden submit form to the user */
+function navNewStoryForm(evt) {
+  console.debug("navNewStoryForm", evt);
+  $submitForm.show();
 }
 
-$("#nav-submit-story").on("click", displayNewStoryForm);
+$("#nav-submit-story").on("click", navNewStoryForm);
+
 /** Show main list of all stories when click site name */
 
 function navAllStories(evt) {
