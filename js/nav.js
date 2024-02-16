@@ -4,6 +4,15 @@
  * Handling navbar clicks and updating navbar
  */
 
+
+
+function displayNewStoryForm(evt) {
+  console.debug("displayNewStoryForm", evt);
+  const $submitForm = $("#submit-form");
+  $submitForm.removeClass("hidden");
+}
+
+$("#nav-submit-story").on("click", displayNewStoryForm);
 /** Show main list of all stories when click site name */
 
 function navAllStories(evt) {
@@ -36,3 +45,5 @@ function updateNavOnLogin() {
   $navLogOut.show();
   $navUserProfile.text(`${currentUser.username}`).show();
 }
+
+

@@ -94,7 +94,7 @@ class StoryList {
     delete storyData.updatedAt;
 
     const addedStory = new Story(storyData);
-    this.stories.unshift(addedStory);
+    //this.stories.unshift(addedNewStory);
     return addedStory;
   }
 }

@@ -50,3 +50,24 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+
+async function addStoryToStoryList(evt) {
+  //evt.preventDefault();
+  console.log("test");
+  const title = $("#title-input").val();
+  const author = $("#author-input").val();
+  const url = $("#url-input").val();
+
+  const currentStoryList = new StoryList(storyList);
+  console.log(currentStoryList);
+  const addedNewStory = await currentStoryList.addStory(currentUser, {title, author, url});
+
+
+
+  //const addedNewStory = new Story({title, author, url})
+  $allStoriesList.prepend(addedNewStory);
+
+}
+
+$("#form-submit-button").on("click", addStoryToStoryList);

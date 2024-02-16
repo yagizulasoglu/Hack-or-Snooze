@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Hack or Snooze</title>
-  <link rel="stylesheet" 
+  <link rel="stylesheet"
         href="https://www.unpkg.com/bootstrap-icons/font/bootstrap-icons.css">
   <link rel="stylesheet" href="css/site.css">
   <link rel="stylesheet" href="css/user.css">
@@ -34,6 +34,11 @@
   <div class="navbar-brand">
     <a class="nav-link" href="#" id="nav-all">Hack or Snooze</a>
   </div>
+
+  <div class="main-nav-links hidden" id="nav-links">
+    <a class="nav-link" href="#" id="nav-submit-story">Submit</a>
+  </div>
+
   <div class="nav-right">
     <a class="nav-link" href="#" id="nav-login">login/signup</a>
     <a class="nav-link" href="#" id="nav-user-profile"></a>
@@ -43,6 +48,22 @@
 
 <!-- area for stories (all stories, user stories, favorites) -->
 <section class="stories-container container">
+
+  <form action="" class="hidden" id="submit-form">
+    <div>
+      <label for="author-input">Author</label>
+      <input type="text" id="author-input" placeholder="Author Name">
+    </div>
+    <div>
+      <label for="title-input">Title</label>
+      <input type="text" id="title-input" placeholder="Story Title">
+    </div>
+    <div>
+      <label for="url-input">URL</label>
+      <input type="text" id="url-input" placeholder="Story URL">
+    </div>
+    <button type="submit" id="form-submit-button">Submit</button>
+  </form>
 
   <!-- loading message (removed by JS after stories loaded) -->
   <div id="stories-loading-msg">Loading&hellip;</div>
