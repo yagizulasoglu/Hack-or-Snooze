@@ -45,17 +45,20 @@ async function toggleFavorite(evt) {
     .closest("li")
     .attr("id");
 
-  let storyListIndex;
-  for (let story of storyList.stories){
-    if (story.storyId === $storyID){
-      storyListIndex = storyList.stories.indexOf(story);
-      break;
-    }
-  }
+  // let storyListIndex;
+  // console.log(storyList.stories);
+  // for (let i = 0; i < storyList.stories.length; i++){
+  //   if (storyList.stories[i].storyId === $storyID){
+  //     storyListIndex = i;
+  //     break;
+  //   }
+  // }
+
+  const storyData = await Story.getStory($storyID);
   if ($selectStar.attr("class") === "bi bi-star") {
-   await currentUser.addFavorite(storyList.stories[storyListIndex]);
+   await currentUser.addFavorite(storyData);
   } else if ($selectStar.attr("class") === "bi bi-star-fill") {
-   await currentUser.removeFavorite(storyList.stories[storyListIndex]);
+   await currentUser.removeFavorite(storyData);
   }
   $selectStar.toggleClass("bi-star-fill");
   $selectStar.toggleClass("bi-star");

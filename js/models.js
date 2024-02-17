@@ -28,7 +28,19 @@ class Story {
     const url = new URL(this.url);
     return url.hostname;
   }
+
+  static async getStory(storyId) {
+    const response = await fetch(`${BASE_URL}/stories/${storyId}`, {
+      method: "GET",
+    });
+    const storyData = await response.json();
+
+    const fetchedStory = storyData.story;
+    return new Story(fetchedStory);
+  }
 }
+
+
 
 
 /******************************************************************************
@@ -229,8 +241,8 @@ class User {
   }
 
   async removeFavorite(story) {
-    const indexOfStory = this.favorites.indexOf(story);
-    this.favorites.splice(indexOfStory, 1);
+    console.log(story);
+    this.favorites = this.favorites.filter(instance => instance.storyId !== story.storyId);
     const response = await fetch(`${BASE_URL}/users/${this.username}/favorites/${story.storyId}`, {
       method: "DELETE",
       body: JSON.stringify({
