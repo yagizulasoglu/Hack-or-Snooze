@@ -4,6 +4,7 @@
  * Handling navbar clicks and updating navbar
  */
 
+/** Creates the favorite list and shows to the user */
 function navFavoritesList(evt) {
   console.debug("navFavoritesList", evt);
   hidePageComponents();
@@ -12,6 +13,7 @@ function navFavoritesList(evt) {
 
   for (let story of currentUser.favorites) {
     const $story = generateStoryMarkup(story);
+    $story.find("i").attr("class", "bi bi-star-fill");
     $allStoriesList.append($story);
   }
   $submitForm.hide();

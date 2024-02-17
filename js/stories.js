@@ -38,7 +38,8 @@ function generateStoryMarkup(story) {
     `);
 }
 // object: {stories: [{story instance}, {story instance}]}
-function toggleFavorite(evt) {
+//TODO: async function
+async function toggleFavorite(evt) {
   const $selectStar = $(evt.target);
   const $storyID = $selectStar
     .closest("li")
@@ -51,16 +52,10 @@ function toggleFavorite(evt) {
       break;
     }
   }
-
-
-
   if ($selectStar.attr("class") === "bi bi-star") {
-    currentUser.addFavorite(storyList.stories[storyListIndex]);
-    const $favoritedStory = generateStoryMarkup(storyList.stories[storyListIndex]);
-    $allStoriesList.append($($favoritedStory));
+   await currentUser.addFavorite(storyList.stories[storyListIndex]);
   } else if ($selectStar.attr("class") === "bi bi-star-fill") {
-    currentUser.removeFavorite(storyList.stories[storyListIndex]);
-    $allStoriesList.remove($());
+   await currentUser.removeFavorite(storyList.stories[storyListIndex]);
   }
   $selectStar.toggleClass("bi-star-fill");
   $selectStar.toggleClass("bi-star");
@@ -78,11 +73,9 @@ function putStoriesOnPage() {
   // loop through all of our stories and generate HTML for them
   for (let story of storyList.stories) {
     const $story = generateStoryMarkup(story);
-    console.log(story);
-    console.log(currentUser.favorites);
     for (let favStory of currentUser.favorites) {
       if (story.storyId === favStory.storyId) {
-        $("i").attr("class", "bi bi-star-fill");
+        $story.find("i").attr("class", "bi bi-star-fill");
         break;
       }
     }

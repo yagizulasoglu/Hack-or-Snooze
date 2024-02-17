@@ -232,7 +232,7 @@ class User {
     const indexOfStory = this.favorites.indexOf(story);
     this.favorites.splice(indexOfStory, 1);
     const response = await fetch(`${BASE_URL}/users/${this.username}/favorites/${story.storyId}`, {
-      method: "POST",
+      method: "DELETE",
       body: JSON.stringify({
         token: this.loginToken
     })})
